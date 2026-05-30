@@ -3,14 +3,14 @@
 ## Student Details
 
 Name: Aditya Naskar
-Roll Number: 24f2002915
+Roll Number:  24f2002915
 Email: 24f2002915@ds.study.iitm.ac.in
 
 ---
 
 ## About Project
 
-This project is created as part of the Git & GitHub Workshop.
+This project is created as a part of the Git & GitHub Workshop.
 
 The portfolio website contains:
 
