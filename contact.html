@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Anmol Chauhan | Contact — Let's Connect</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafc;
+      color: #1a1e2c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* design tokens */
+    :root {
+      --primary: #3b3f5c;
+      --accent: #6366f1;
+      --accent-dark: #4f52e0;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --card-bg: #ffffff;
+      --soft-gray: #f1f5f9;
+      --text-muted: #5b6e8c;
+      --border-light: #eef2f8;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header glass morph */
+    header {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 1.25rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e1f2c, #434669);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .brand p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #2d3a4b;
+      transition: 0.2s ease;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a i {
+      font-size: 0.85rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: var(--accent);
+      transition: 0.2s;
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* page intro */
+    .contact-hero {
+      background: linear-gradient(125deg, #eef2ff, #ffffff);
+      border-radius: 2rem;
+      margin: 2rem 0 2rem;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-hero h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #1e293b, #3b3f5c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-hero p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* 2-col layout: contact cards + form */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .contact-info {
+      flex: 1.2;
+      min-width: 260px;
+    }
+
+    .contact-form-wrapper {
+      flex: 1.8;
+      min-width: 280px;
+    }
+
+    /* modern contact cards */
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1.3rem 1.6rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.25s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: #e0e7ff;
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--accent);
+      transition: 0.2s;
+    }
+
+    .contact-card:hover .card-icon {
+      background: var(--accent);
+      color: white;
+    }
+
+    .card-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-content p {
+      color: #334155;
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    .card-content a {
+      text-decoration: none;
+      color: #334155;
+      transition: color 0.2s;
+    }
+
+    .card-content a:hover {
+      color: var(--accent);
+    }
+
+    /* Social links row */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+
+    .social-icon {
+      background: white;
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.2rem;
+      font-size: 1.5rem;
+      color: #2d3a4b;
+      border: 1px solid var(--border-light);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    /* Modern form styling */
+    .form-card {
+      background: var(--card-bg);
+      border-radius: 1.75rem;
+      padding: 1.8rem 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-title i {
+      color: var(--accent);
+    }
+
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: block;
+      margin-bottom: 0.4rem;
+      color: #1e293b;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .submit-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .submit-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -6px var(--accent);
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: #6c757d;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* toast message styling */
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: #f1f5f9;
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid #334155;
+      pointer-events: none;
+    }
+
+    footer {
+      margin-top: 3rem;
+      background: #0f172a;
+      color: #cbd5e6;
+      padding: 2rem 2rem;
+      border-radius: 2rem 2rem 0 0;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    footer p i {
+      margin: 0 4px;
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      nav {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .contact-hero {
+        padding: 1.5rem;
+      }
+
+      .contact-hero h2 {
+        font-size: 1.8rem;
+      }
+
+      .contact-grid {
+        flex-direction: column;
+      }
+
+      .form-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>Anmol Chauhan</h1>
+        <p><i class="fas fa-microchip"></i> IIT Madras | Electronics & Web Engineering</p>
+      </div>
+      <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html"><i class="fas fa-user-astronaut"></i> About</a>
+        <a href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        <a href="contact.html"><i class="fas fa-paper-plane"></i> Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero headline -->
+    <div class="contact-hero">
+      <h2><i class="fas fa-comment-dots" style="color: var(--accent);"></i> Let's Connect</h2>
+      <p>Have a project in mind, collaboration opportunity, or just want to say hi? I’d love to hear from you.</p>
+    </div>
+
+    <!-- 2 column: contact cards + direct form -->
+    <div class="contact-grid">
+      <!-- left side: contact methods -->
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="card-icon"><i class="fas fa-envelope"></i></div>
+          <div class="card-content">
+            <h3>Email</h3>
+            <p><a href="mailto:24f2002915@ds.study.iitm.ac.in">24f2002915@ds.study.iitm.ac.in</a></p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="card-icon"><i class="fab fa-github"></i></div>
+          <div class="card-content">
+            <h3>GitHub</h3>
+            <p><a href="#" target="_blank">24f2002915-droid</a></p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="card-content">
+            <h3>Location</h3>
+            <p>India (IST)</p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="card-icon"><i class="fab fa-linkedin"></i></div>
+          <div class="card-content">
+            <h3>LinkedIn</h3>
+            <p><a href="#">Connect with me</a></p>
+          </div>
+        </div>
+
+        <!-- social icons row -->
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="font-size: 0.75rem; margin-top: 1.2rem; color: #5b6e8c;"><i class="fas fa-clock"></i> Typically reply
+          within 24 hours</p>
+      </div>
+
+      <!-- right side: modern contact form -->
+      <div class="contact-form-wrapper">
+        <div class="form-card">
+          <div class="form-title">
+            <i class="fas fa-paper-plane"></i>
+            <span>Send a message</span>
+          </div>
+          <form id="contactForm">
+            <div class="input-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="input-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+            </div>
+            <div class="input-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project or inquiry..."
+                required></textarea>
+            </div>
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+            <div class="form-note"><i class="fas fa-lock"></i> Your info is safe — I'll never spam you.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p><i class="far fa-copyright"></i> Git & GitHub Workshop Portfolio Project — 2026 | Built with <i
+        class="fas fa-heart" style="color: #f472b6;"></i> & seamless connectivity</p>
+    <p style="margin-top: 8px; font-size: 0.75rem;">✦ Open to collaborations, tech talks & opportunities ✦</p>
+  </footer>
+
+  <script>
+    // Interactive feedback for the contact form (no actual backend — demo friendly)
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const msg = document.getElementById('message').value.trim();
+
+        if (!name || !email || !msg) {
+          showToast('⚠️ Please fill in all fields before sending.', '#eab308');
+          return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+          showToast('📧 Please enter a valid email address.', '#eab308');
+          return;
+        }
+
+        // success simulation
+        showToast(`✨ Thanks ${name}! Your message has been delivered. I'll reach out soon.`, '#10b981');
+        form.reset();
+      });
+    }
+
+    function showToast(message, colorHint = '#10b981') {
+      // remove existing toasts
+      const existingToast = document.querySelector('.toast-msg');
+      if (existingToast) existingToast.remove();
+
+      const toast = document.createElement('div');
+      toast.className = 'toast-msg';
+      toast.innerHTML = `<i class="fas fa-check-circle" style="margin-right: 8px;"></i> ${message}`;
+      toast.style.background = '#1e293b';
+      toast.style.borderLeft = `4px solid ${colorHint}`;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // optional interactive card hover effect improvements
+    const contactCards = document.querySelectorAll('.contact-card');
+    contactCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.2s ease, box-shadow 0.2s';
+      });
+    });
+  </script>
+</body>
+
+</html>

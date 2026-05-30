@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Aditya Naskar | Modern Portfolio</title>
+  <!-- Google Fonts + Smooth Icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafc;
+      color: #1a1e2c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* modern glassmorphism & gradients */
+    :root {
+      --primary: #3b3f5c;
+      --primary-dark: #2c2f47;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --bg-light: #ffffff;
+      --card-bg: #ffffff;
+      --soft-gray: #f1f5f9;
+      --text-muted: #5b6e8c;
+      --border-light: #eef2f8;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 24px 36px -12px rgba(99, 102, 241, 0.15);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header area */
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 1.25rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e1f2c, #434669);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #2d3a4b;
+      transition: 0.2s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: var(--accent);
+      transition: 0.2s;
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* hero section */
+    .hero {
+      background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+      border-radius: 2rem;
+      margin: 2.5rem 0 2rem;
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #1e293b, #3b3f5c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+      border: none;
+    }
+
+    .btn i {
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      background: #4f52e0;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -10px var(--accent);
+    }
+
+    .btn:hover i {
+      transform: translateX(4px);
+    }
+
+    /* card style sections */
+    .glass-card {
+      background: var(--card-bg);
+      border-radius: 1.75rem;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.25s ease;
+    }
+
+    .glass-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #e2e8f0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: inline-block;
+      background: linear-gradient(145deg, #1e293b, #2d3a5e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .student-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: linear-gradient(115deg, #ffffff 0%, #fafcff 100%);
+      border-radius: 1.5rem;
+      padding: 1.6rem 2rem;
+    }
+
+    .detail-item {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--soft-gray);
+      padding: 0.9rem 1.2rem;
+      border-radius: 1.2rem;
+      transition: transform 0.15s;
+    }
+
+    .detail-item i {
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+
+    .detail-item p {
+      margin: 0;
+    }
+
+    .detail-item strong {
+      font-weight: 700;
+      display: block;
+      font-size: 0.75rem;
+      color: #5b6e8c;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .detail-item span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    /* skills grid  enhanced */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-card {
+      background: linear-gradient(135deg, #ffffff, #f8fafd);
+      padding: 0.85rem 1.8rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      border: 1px solid #eef2ff;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(2px);
+    }
+
+    .skill-card i {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      background: white;
+      border-color: var(--accent);
+      box-shadow: 0 10px 20px -8px rgba(99, 102, 241, 0.2);
+    }
+
+    /* footer modern */
+    footer {
+      margin-top: 4rem;
+      background: #0f172a;
+      color: #cbd5e6;
+      padding: 2rem 2rem;
+      border-radius: 2rem 2rem 0 0;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+    }
+
+    footer p {
+      opacity: 0.8;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+    }
+
+    /* responsiveness */
+    @media (max-width: 760px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      nav {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.9rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .student-details {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+    }
+
+    /* subtle decorations */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "✨";
+      font-size: 140px;
+      position: absolute;
+      bottom: -40px;
+      right: -20px;
+      opacity: 0.04;
+      pointer-events: none;
+      font-family: monospace;
+    }
+
+    .skill-card:before {
+      content: "•";
+      font-weight: 900;
+      color: var(--accent);
+      margin-right: 4px;
+    }
+
+    .skill-card i:before {
+      content: none;
+    }
+
+    .skill-card i {
+      margin-right: 4px;
+    }
+
+    /* adjust before pseudo for consistency */
+    .skill-card::before {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>Aditya Naskar</h1>
+        <p><i class="fas fa-microchip"></i> IIT Madras BS Degree Student</p>
+      </div>
+      <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html"><i class="fas fa-user"></i> About</a>
+        <a href="projects.html"><i class="fas fa-code-branch"></i> Projects</a>
+        <a href="contact.html"><i class="fas fa-paper-plane"></i> Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section with refined UI -->
+    <section class="hero">
+      <h2>Welcome to My Portfolio</h2>
+      <p>
+        Electronics Engineering student passionate about Web Development,
+        Git, GitHub, Linux, and Software Engineering.
+      </p>
+      <a href="projects.html" class="btn">
+        <span>View My Projects</span> <i class="fas fa-arrow-right"></i>
+      </a>
+    </section>
+
+    <!-- Student Details - modern card with icons -->
+    <div class="glass-card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 1.8rem 2rem 0 2rem;">
+        <h2 class="section-title"><i class="fas fa-id-card" style="margin-right: 10px; color: var(--accent);"></i>
+          Student Details</h2>
+      </div>
+      <div class="student-details" style="margin: 0 1.5rem 1.8rem 1.5rem; background: transparent; padding: 0;">
+        <div class="detail-item">
+          <i class="fas fa-user-graduate"></i>
+          <div>
+            <strong>Full Name</strong>
+            <span>Aditya Naskar</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-hashtag"></i>
+          <div>
+            <strong>Roll Number</strong>
+            <span>24f2002915</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong>Email Address</strong>
+            <span>24f2002915@ds.study.iitm.ac.in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Section with enhanced cards + icons -->
+    <div class="glass-card">
+      <h2 class="section-title"><i class="fas fa-cogs" style="margin-right: 10px; color: var(--accent);"></i> Technical
+        Arsenal</h2>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fab fa-html5"></i> HTML5</div>
+        <div class="skill-card"><i class="fab fa-css3-alt"></i> CSS3</div>
+        <div class="skill-card"><i class="fab fa-git-alt"></i> Git</div>
+        <div class="skill-card"><i class="fab fa-github"></i> GitHub</div>
+        <div class="skill-card"><i class="fab fa-linux"></i> Linux</div>
+        <div class="skill-card"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="skill-card"><i class="fas fa-terminal"></i> CLI Tools</div>
+        <div class="skill-card"><i class="fas fa-code-branch"></i> Version Control</div>
+      </div>
+    </div>
+
+    <!-- additional personality block to show extra modern vibe -->
+    <div class="glass-card" style="background: linear-gradient(125deg, #fefefe, #f8fafc);">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.6rem; font-weight: 700; color: #1e293b;"><i class="fas fa-rocket"
+              style="color: var(--accent); margin-right: 8px;"></i> Beyond the code</h3>
+          <p style="margin-top: 0.8rem; color: #334155; max-width: 500px;">Building elegant web experiences, mastering
+            open-source workflows, and exploring embedded systems — driven by curiosity and clean design.</p>
+        </div>
+        <div style="background: rgba(99,102,241,0.08); padding: 1rem 2rem; border-radius: 2rem;">
+          <i class="fas fa-graduation-cap" style="font-size: 2.2rem; color: var(--accent);"></i>
+          <span style="font-weight: 600; margin-left: 8px;">IIT Madras BS</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p><i class="far fa-copyright"></i> Git & GitHub Workshop Portfolio Project — 2026 | Crafted with <i
+        class="fas fa-heart" style="color: #f472b6;"></i> & modern UI</p>
+    <p style="margin-top: 12px; font-size: 0.75rem;">✦ Built with semantic HTML + refined interaction design ✦</p>
+  </footer>
+
+  <!-- subtle micro-interaction scripts (optional only for enhanced hover or inert) -->
+  <script>
+    // Add smooth hover effect on detail items (tiny polish, nothing heavy)
+    document.querySelectorAll('.detail-item').forEach(item => {
+      item.addEventListener('mouseenter', (e) => {
+        item.style.transform = 'translateY(-2px)';
+        item.style.transition = '0.2s';
+        item.style.boxShadow = '0 8px 15px -6px rgba(0,0,0,0.08)';
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = 'translateY(0px)';
+        item.style.boxShadow = 'none';
+      });
+    });
+    // extra interactive glow on skill cards
+    const skillCards = document.querySelectorAll('.skill-card');
+    skillCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.background = '#ffffff';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.background = 'linear-gradient(135deg, #ffffff, #f8fafd)';
+      });
+    });
+    // optional smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== "#" && href !== "" && href.startsWith('#')) {
+          e.preventDefault();
+          document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
